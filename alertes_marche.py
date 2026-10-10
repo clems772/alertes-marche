@@ -91,7 +91,7 @@ def charger_semaine(forcer=False):
         "Cherche le calendrier economique de la semaine du " + lundi.strftime("%d/%m/%Y")
         + " au " + vendredi.strftime("%d/%m/%Y") + ". "
         "Garde UNIQUEMENT les annonces a fort impact pour les Etats-Unis, le Royaume-Uni et le Japon "
-        "(inflation, emploi, PIB, ventes au detail, banques centrales, PMI majeurs). Maximum 15. "
+        "(inflation, emploi, PIB, ventes au detail, banques centrales, PMI majeurs). Maximum 15. Une seule ligne par publication : regroupe les variantes d'un meme chiffre (mensuel, annuel, sous-jacent). Inclus OBLIGATOIREMENT les annonces importantes du Royaume-Uni et du Japon de la semaine (PIB, inflation, emploi, BoE, BoJ, prix a la production) meme si elles sont moins suivies que les americaines. "
         "Heures converties en heure de Paris. Reponds UNIQUEMENT par un tableau JSON : "
         '[{"id":"court_unique","pays":"US|UK|JP","nom":"nom clair en francais",'
         '"heure_paris":"AAAA-MM-JJTHH:MM","prevision":"consensus ou vide",'
@@ -101,12 +101,17 @@ def charger_semaine(forcer=False):
     annonces.sort(key=lambda a: a["heure_paris"])
     ecrire(FICHIER_SEMAINE, {"lundi": lundi.isoformat(), "annonces": annonces})
     drapeau = {"US": "🇺🇸", "UK": "🇬🇧", "JP": "🇯🇵"}
-    lignes = []
-    for a in annonces:
-        h = dt.datetime.fromisoformat(a["heure_paris"]).strftime("%a %H:%M")
-        lignes.append(h + " " + drapeau.get(a["pays"], "") + " " + a["nom"])
+    jours = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"]
+    # une notification par annonce, envoyees de la derniere a la premiere
+    # pour qu'elles s'affichent dans l'ordre chronologique sur le telephone
+    for a in reversed(annonces):
+        h = dt.datetime.fromisoformat(a["heure_paris"])
+        titre = "📅 " + jours[h.weekday()] + " " + h.strftime("%d/%m %H:%M") + " " + drapeau.get(a["pays"], "") + " " + a["nom"]
+        prevision = a.get("prevision") or "non communiquee"
+        notifier(titre, "Prevision : " + prevision + "\n" + a.get("regle", ""))
+        time.sleep(1)
     notifier("📅 Semaine du " + lundi.strftime("%d/%m") + " : " + str(len(annonces)) + " annonces",
-             "\n".join(lignes))
+             "Le detail de chaque annonce est juste en dessous.")
     return annonces
 
 
