@@ -17,6 +17,8 @@ FICHIER_SEMAINE = os.path.join(DOSSIER, "semaine.json")
 FICHIER_ETAT = os.path.join(DOSSIER, "etat.json")
 PASTILLE = {"favorable": "🟢", "defavorable": "🔴", "neutre": "⚪"}
 TAG = {"favorable": "green_circle", "defavorable": "red_circle", "neutre": "white_circle"}
+DRAPEAU = {"US": "🇺🇸", "UK": "🇬🇧", "JP": "🇯🇵"}
+JOURS = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"]
 
 
 def maintenant():
@@ -69,7 +71,7 @@ def notifier(titre, message, verdict=None):
     if NTFY_TOPIC:
         requests.post("https://ntfy.sh/", timeout=30, json={
             "topic": NTFY_TOPIC, "title": titre, "message": message,
-            "tags": [TAG.get(verdict, "bell")], "priority": 4})
+            "tags": [TAG[verdict]] if verdict in TAG else [], "priority": 4})
 
 
 def lundi_cible():
@@ -93,25 +95,25 @@ def charger_semaine(forcer=False):
         "Garde UNIQUEMENT les annonces a fort impact pour les Etats-Unis, le Royaume-Uni et le Japon "
         "(inflation, emploi, PIB, ventes au detail, banques centrales, PMI majeurs). Maximum 15. Une seule ligne par publication : regroupe les variantes d'un meme chiffre (mensuel, annuel, sous-jacent). Inclus OBLIGATOIREMENT les annonces importantes du Royaume-Uni et du Japon de la semaine (PIB, inflation, emploi, BoE, BoJ, prix a la production) meme si elles sont moins suivies que les americaines. "
         "Heures converties en heure de Paris. Reponds UNIQUEMENT par un tableau JSON : "
-        '[{"id":"court_unique","pays":"US|UK|JP","nom":"nom clair en francais",'
-        '"heure_paris":"AAAA-MM-JJTHH:MM","prevision":"consensus ou vide",'
+        '[{"id":"court_unique","pays":"US|UK|JP","nom":"nom tres court en francais, 3 mots maximum, ex: Inflation CPI",'
+        '"heure_paris":"AAAA-MM-JJTHH:MM","prevision":"chiffre principal seulement, tres court, ex: 0,6 % sur un mois, ou vide",'
         '"regle":"quand le chiffre est favorable pour les actions"}]'
     )
     annonces = demander_a_claude(question, recherches=8)
     annonces.sort(key=lambda a: a["heure_paris"])
     ecrire(FICHIER_SEMAINE, {"lundi": lundi.isoformat(), "annonces": annonces})
-    drapeau = {"US": "🇺🇸", "UK": "🇬🇧", "JP": "🇯🇵"}
-    jours = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"]
     # une notification par annonce, envoyees de la derniere a la premiere
     # pour qu'elles s'affichent dans l'ordre chronologique sur le telephone
     for a in reversed(annonces):
         h = dt.datetime.fromisoformat(a["heure_paris"])
-        titre = "📅 " + jours[h.weekday()] + " " + h.strftime("%d/%m %H:%M") + " " + drapeau.get(a["pays"], "") + " " + a["nom"]
-        prevision = a.get("prevision") or "non communiquee"
-        notifier(titre, "Prevision : " + prevision + "\n" + a.get("regle", ""))
+        titre = DRAPEAU.get(a["pays"], "") + " " + a["nom"]
+        message = JOURS[h.weekday()] + " " + h.strftime("%d/%m") + " à " + h.strftime("%Hh%M")
+        if a.get("prevision"):
+            message = message + "\nPrévu : " + a["prevision"]
+        notifier(titre, message)
         time.sleep(1)
-    notifier("📅 Semaine du " + lundi.strftime("%d/%m") + " : " + str(len(annonces)) + " annonces",
-             "Le detail de chaque annonce est juste en dessous.")
+    notifier("Semaine du " + lundi.strftime("%d/%m") + " : " + str(len(annonces)) + " annonces",
+             "Le détail est juste en dessous.")
     return annonces
 
 
@@ -137,7 +139,7 @@ def verifier(a):
 
 def alerter(a, rep):
     v = rep.get("verdict", "neutre")
-    titre = (PASTILLE.get(v, "⚪") + " " + a["nom"] + " : " + str(rep.get("reel", "?"))
+    titre = (PASTILLE.get(v, "⚪") + " " + DRAPEAU.get(a.get("pays", ""), "") + " " + a["nom"] + " : " + str(rep.get("reel", "?"))
              + " (prevu " + str(rep.get("prevision", "?")) + ")")
     notifier(titre, rep.get("explication", ""), v)
 
