@@ -2,68 +2,44 @@
   "lundi": "2026-10-12",
   "annonces": [
     {
-      "id": "jp_ppi_sep",
+      "id": "jp_ppi",
       "pays": "JP",
-      "nom": "Japon – Prix à la production (CGPI) septembre, m/m et a/a",
+      "nom": "Prix production",
       "heure_paris": "2026-10-13T01:50",
       "prevision": "",
-      "regle": "Favorable si inférieur au consensus : moins de pression inflationniste, donc moins de risque de resserrement de la BoJ."
+      "regle": "Favorable si la hausse des prix à la production est inférieure aux attentes, ce qui réduit la pression sur la BoJ pour relever ses taux."
     },
     {
-      "id": "us_cpi_sep",
+      "id": "us_cpi",
       "pays": "US",
-      "nom": "États-Unis – Inflation CPI septembre (global et sous-jacent, m/m et a/a)",
+      "nom": "Inflation CPI",
       "heure_paris": "2026-10-14T14:30",
-      "prevision": "Global 0,6 % m/m et 3,6 % a/a ; sous-jacent 0,2 % m/m et 2,5 % a/a",
-      "regle": "Favorable si inférieur ou égal au consensus, surtout le sous-jacent : cela réduit le risque de nouvelle hausse de taux de la Fed."
+      "prevision": "0,6 % sur un mois",
+      "regle": "Favorable si l'inflation, surtout sous-jacente, est inférieure aux attentes, ce qui réduit le risque d'une nouvelle hausse de taux de la Fed."
     },
     {
-      "id": "uk_gdp_aug",
+      "id": "uk_pib",
       "pays": "UK",
-      "nom": "Royaume-Uni – PIB mensuel août (avec production industrielle et balance commerciale)",
+      "nom": "PIB mensuel",
       "heure_paris": "2026-10-15T08:00",
-      "prevision": "",
-      "regle": "Favorable si supérieur au consensus (croissance solide) ; un recul prononcé alimenterait les craintes de récession."
+      "prevision": "-0,1 % à -0,4 % sur un mois",
+      "regle": "Favorable si le PIB est meilleur que prévu, car cela confirme la solidité de l'économie britannique."
     },
     {
-      "id": "us_ppi_sep",
+      "id": "us_ppi",
       "pays": "US",
-      "nom": "États-Unis – Prix à la production PPI septembre (global et sous-jacent)",
+      "nom": "Prix production PPI",
       "heure_paris": "2026-10-15T14:30",
-      "prevision": "Global 0,5 % m/m ; sous-jacent 0,3 % m/m",
-      "regle": "Favorable si inférieur au consensus : moins de pression sur les prix et sur la Fed."
+      "prevision": "0,5 % sur un mois",
+      "regle": "Favorable si les prix à la production sont inférieurs aux attentes, car cela annonce une inflation plus faible."
     },
     {
-      "id": "us_retail_sep",
+      "id": "us_ventes_detail",
       "pays": "US",
-      "nom": "États-Unis – Ventes au détail septembre (global et hors automobile)",
+      "nom": "Ventes au détail",
       "heure_paris": "2026-10-15T14:30",
-      "prevision": "0,3 % m/m ; hors automobile 0,5 % m/m",
-      "regle": "Favorable si proche du consensus ou légèrement supérieur (consommation solide). Un chiffre très supérieur ravive les craintes de hausse de taux."
-    },
-    {
-      "id": "us_claims",
-      "pays": "US",
-      "nom": "États-Unis – Inscriptions hebdomadaires au chômage",
-      "heure_paris": "2026-10-15T14:30",
-      "prevision": "197 K",
-      "regle": "Favorable si inférieur ou égal au consensus (marché du travail solide) ; une forte hausse inquiéterait sur la croissance."
-    },
-    {
-      "id": "uk_boe_bailey",
-      "pays": "UK",
-      "nom": "Banque d'Angleterre – Discours du gouverneur Bailey",
-      "heure_paris": "2026-10-16T04:00",
-      "prevision": "",
-      "regle": "Favorable si le ton est plutôt accommodant ou prudent, sans signal de resserrement monétaire supplémentaire."
-    },
-    {
-      "id": "us_fed_warsh",
-      "pays": "US",
-      "nom": "Fed – Discours du président Warsh (échange avec le FMI, Bangkok)",
-      "heure_paris": "2026-10-16T05:30",
-      "prevision": "",
-      "regle": "Favorable si le ton est moins agressif sur l'inflation, sans signal de hausse de taux en octobre ni décembre."
+      "prevision": "0,3 % sur un mois",
+      "regle": "Favorable si la hausse est modérée et proche des attentes, ce qui montre une consommation solide sans relancer la crainte d'une hausse des taux."
     }
   ]
 }
