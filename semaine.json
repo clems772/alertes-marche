@@ -2,68 +2,68 @@
   "lundi": "2026-10-12",
   "annonces": [
     {
-      "id": "us_cpi_mom",
-      "pays": "US",
-      "nom": "Inflation CPI US (sept.) – variation mensuelle",
-      "heure_paris": "2026-10-14T14:30",
-      "prevision": "+0,6% (préc. +0,4%)",
-      "regle": "Favorable si le chiffre est inférieur ou égal au consensus, car cela réduit le risque d'une nouvelle hausse des taux de la Fed. Défavorable s'il est supérieur."
+      "id": "jp_ppi_sep",
+      "pays": "JP",
+      "nom": "Japon – Prix à la production (CGPI) septembre, m/m et a/a",
+      "heure_paris": "2026-10-13T01:50",
+      "prevision": "",
+      "regle": "Favorable si inférieur au consensus : moins de pression inflationniste, donc moins de risque de resserrement de la BoJ."
     },
     {
-      "id": "us_cpi_yoy",
+      "id": "us_cpi_sep",
       "pays": "US",
-      "nom": "Inflation CPI US (sept.) – sur un an",
+      "nom": "États-Unis – Inflation CPI septembre (global et sous-jacent, m/m et a/a)",
       "heure_paris": "2026-10-14T14:30",
-      "prevision": "3,6% (préc. 3,4%)",
-      "regle": "Favorable si le chiffre est inférieur ou égal à 3,6%. Défavorable s'il est supérieur, car la Fed resserrerait alors davantage sa politique."
+      "prevision": "Global 0,6 % m/m et 3,6 % a/a ; sous-jacent 0,2 % m/m et 2,5 % a/a",
+      "regle": "Favorable si inférieur ou égal au consensus, surtout le sous-jacent : cela réduit le risque de nouvelle hausse de taux de la Fed."
     },
     {
-      "id": "us_core_cpi_mom",
-      "pays": "US",
-      "nom": "Inflation sous-jacente CPI US (sept.) – variation mensuelle",
-      "heure_paris": "2026-10-14T14:30",
-      "prevision": "+0,2% (préc. +0,3%)",
-      "regle": "Favorable si le chiffre est inférieur ou égal à +0,2%. Défavorable s'il est supérieur ou égal à +0,3%."
-    },
-    {
-      "id": "us_core_cpi_yoy",
-      "pays": "US",
-      "nom": "Inflation sous-jacente CPI US (sept.) – sur un an",
-      "heure_paris": "2026-10-14T14:30",
-      "prevision": "2,5% (préc. 2,4%)",
-      "regle": "Favorable si le chiffre est inférieur ou égal à 2,5%. Défavorable s'il est supérieur."
-    },
-    {
-      "id": "uk_gdp_mom",
+      "id": "uk_gdp_aug",
       "pays": "UK",
-      "nom": "PIB britannique (août) – variation mensuelle",
+      "nom": "Royaume-Uni – PIB mensuel août (avec production industrielle et balance commerciale)",
       "heure_paris": "2026-10-15T08:00",
-      "prevision": "-0,3% à -0,4% (préc. +0,4%)",
-      "regle": "Favorable si le chiffre est supérieur au consensus, car il montre une économie résiliente. Défavorable s'il est inférieur à -0,4%."
+      "prevision": "",
+      "regle": "Favorable si supérieur au consensus (croissance solide) ; un recul prononcé alimenterait les craintes de récession."
     },
     {
-      "id": "us_ppi_mom",
+      "id": "us_ppi_sep",
       "pays": "US",
-      "nom": "Prix à la production PPI US (sept.) – variation mensuelle",
+      "nom": "États-Unis – Prix à la production PPI septembre (global et sous-jacent)",
       "heure_paris": "2026-10-15T14:30",
-      "prevision": "+0,5% (préc. +0,4%)",
-      "regle": "Favorable si le chiffre est inférieur ou égal au consensus, car la pression sur les prix recule. Défavorable s'il est supérieur."
+      "prevision": "Global 0,5 % m/m ; sous-jacent 0,3 % m/m",
+      "regle": "Favorable si inférieur au consensus : moins de pression sur les prix et sur la Fed."
     },
     {
-      "id": "us_retail_mom",
+      "id": "us_retail_sep",
       "pays": "US",
-      "nom": "Ventes au détail US (sept.) – variation mensuelle",
+      "nom": "États-Unis – Ventes au détail septembre (global et hors automobile)",
       "heure_paris": "2026-10-15T14:30",
-      "prevision": "+0,3% (préc. +1,1%)",
-      "regle": "Favorable si le chiffre est proche du consensus ou légèrement supérieur, ce qui indique une consommation solide sans surchauffe. Défavorable s'il est très supérieur (risque de hausse des taux) ou négatif (risque de ralentissement)."
+      "prevision": "0,3 % m/m ; hors automobile 0,5 % m/m",
+      "regle": "Favorable si proche du consensus ou légèrement supérieur (consommation solide). Un chiffre très supérieur ravive les craintes de hausse de taux."
     },
     {
-      "id": "us_retail_control",
+      "id": "us_claims",
       "pays": "US",
-      "nom": "Ventes au détail US (sept.) – groupe de contrôle",
+      "nom": "États-Unis – Inscriptions hebdomadaires au chômage",
       "heure_paris": "2026-10-15T14:30",
-      "prevision": "+0,3% (préc. +1,2%)",
-      "regle": "Favorable si le chiffre est proche du consensus ou légèrement supérieur. Défavorable s'il est nettement inférieur (consommation en recul) ou très supérieur (tensions sur les taux)."
+      "prevision": "197 K",
+      "regle": "Favorable si inférieur ou égal au consensus (marché du travail solide) ; une forte hausse inquiéterait sur la croissance."
+    },
+    {
+      "id": "uk_boe_bailey",
+      "pays": "UK",
+      "nom": "Banque d'Angleterre – Discours du gouverneur Bailey",
+      "heure_paris": "2026-10-16T04:00",
+      "prevision": "",
+      "regle": "Favorable si le ton est plutôt accommodant ou prudent, sans signal de resserrement monétaire supplémentaire."
+    },
+    {
+      "id": "us_fed_warsh",
+      "pays": "US",
+      "nom": "Fed – Discours du président Warsh (échange avec le FMI, Bangkok)",
+      "heure_paris": "2026-10-16T05:30",
+      "prevision": "",
+      "regle": "Favorable si le ton est moins agressif sur l'inflation, sans signal de hausse de taux en octobre ni décembre."
     }
   ]
 }
