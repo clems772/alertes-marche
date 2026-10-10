@@ -18,7 +18,9 @@ FICHIER_ETAT = os.path.join(DOSSIER, "etat.json")
 PASTILLE = {"favorable": "🟢", "defavorable": "🔴", "neutre": "⚪"}
 TAG = {"favorable": "green_circle", "defavorable": "red_circle", "neutre": "white_circle"}
 DRAPEAU = {"US": "🇺🇸", "UK": "🇬🇧", "JP": "🇯🇵"}
-JOURS = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"]
+JOURS = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
+IMPACT = {"fort": "🔥 Fort impact", "moyen_fort": "⚡ Impact moyen à fort",
+          "moyen": "〰️ Impact moyen", "faible": "💤 Impact faible"}
 
 
 def maintenant():
@@ -97,7 +99,12 @@ def charger_semaine(forcer=False):
         "Heures converties en heure de Paris. Reponds UNIQUEMENT par un tableau JSON : "
         '[{"id":"court_unique","pays":"US|UK|JP","nom":"nom tres court en francais, 3 mots maximum, ex: Inflation CPI",'
         '"heure_paris":"AAAA-MM-JJTHH:MM","prevision":"chiffre principal seulement, tres court, ex: 0,6 % sur un mois, ou vide",'
-        '"regle":"quand le chiffre est favorable pour les actions"}]'
+        '"regle":"quand le chiffre est favorable pour les actions",'
+        '"impact":"fort|moyen_fort|moyen|faible"}]. '
+        "Pour impact, juge l'effet probable sur les marches (actions US et bitcoin) : "
+        "fort = CPI US, emploi US, decision ou discours du president de la Fed ; "
+        "moyen_fort = PPI US, ventes au detail US ; moyen = chomage hebdo US, PIB ou BoE au Royaume-Uni ; "
+        "faible = indicateurs japonais secondaires."
     )
     annonces = demander_a_claude(question, recherches=8)
     annonces.sort(key=lambda a: a["heure_paris"])
@@ -110,6 +117,8 @@ def charger_semaine(forcer=False):
         message = JOURS[h.weekday()] + " " + h.strftime("%d/%m") + " à " + h.strftime("%Hh%M")
         if a.get("prevision"):
             message = message + "\nPrévu : " + a["prevision"]
+        if a.get("impact") in IMPACT:
+            message = message + "\n" + IMPACT[a["impact"]]
         notifier(titre, message)
         time.sleep(1)
     notifier("Semaine du " + lundi.strftime("%d/%m") + " : " + str(len(annonces)) + " annonces",
