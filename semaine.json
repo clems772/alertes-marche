@@ -4,26 +4,47 @@
     {
       "id": "jp_ppi",
       "pays": "JP",
-      "nom": "Prix production PPI",
+      "nom": "Prix production Japon",
       "heure_paris": "2026-10-13T01:50",
-      "prevision": "8,0 % sur un an",
-      "regle": "Favorable si le chiffre est inférieur aux attentes, car cela réduit la pression pour que la BoJ relève ses taux."
+      "prevision": "",
+      "regle": "Hausse plus faible que prévu : moins de pression sur la BoJ pour relever ses taux, ce qui est favorable aux actions.",
+      "impact": "faible"
+    },
+    {
+      "id": "uk_emploi",
+      "pays": "UK",
+      "nom": "Emploi Royaume-Uni",
+      "heure_paris": "2026-10-13T08:00",
+      "prevision": "",
+      "regle": "Marché du travail et salaires modérés : cela réduit la pression sur la BoE sans signaler de récession. Favorable aux actions.",
+      "impact": "moyen"
     },
     {
       "id": "us_cpi",
       "pays": "US",
       "nom": "Inflation CPI",
       "heure_paris": "2026-10-14T14:30",
-      "prevision": "3,7 % sur un an",
-      "regle": "Favorable si le CPI, surtout l'indice sous-jacent, est inférieur aux attentes, car cela réduit le risque d'une hausse de taux de la Fed."
+      "prevision": "0,6 % sur un mois",
+      "regle": "Chiffre égal ou inférieur aux prévisions, surtout l'inflation sous-jacente (0,2 % attendu) : cela éloigne une hausse des taux de la Fed.",
+      "impact": "fort"
     },
     {
-      "id": "uk_gdp",
+      "id": "jp_boj_koeda",
+      "pays": "JP",
+      "nom": "Discours BoJ Koeda",
+      "heure_paris": "2026-10-15T03:30",
+      "prevision": "",
+      "regle": "Ton prudent sur de nouvelles hausses de taux : rassurant pour les marchés.",
+      "impact": "faible"
+    },
+    {
+      "id": "uk_pib",
       "pays": "UK",
-      "nom": "PIB mensuel",
+      "nom": "PIB Royaume-Uni",
       "heure_paris": "2026-10-15T08:00",
-      "prevision": "-0,1 % sur un mois",
-      "regle": "Favorable si le PIB est supérieur aux attentes, car cela montre que la croissance résiste."
+      "prevision": "-0,3 % sur un mois",
+      "regle": "Croissance meilleure que prévu, sans nourrir la crainte d'un resserrement plus dur de la BoE.",
+      "impact": "moyen"
     },
     {
       "id": "us_ppi",
@@ -31,39 +52,44 @@
       "nom": "Prix production PPI",
       "heure_paris": "2026-10-15T14:30",
       "prevision": "0,5 % sur un mois",
-      "regle": "Favorable si le PPI est inférieur aux attentes, car cela réduit la pression sur l'inflation et sur la Fed."
+      "regle": "Hausse inférieure aux prévisions : moins de pression sur l'inflation, favorable aux actions.",
+      "impact": "moyen_fort"
     },
     {
-      "id": "us_retail",
+      "id": "us_ventes_detail",
       "pays": "US",
       "nom": "Ventes au détail",
       "heure_paris": "2026-10-15T14:30",
       "prevision": "0,3 % sur un mois",
-      "regle": "Favorable si les ventes sont proches ou un peu supérieures aux attentes. Un chiffre très élevé peut relancer les craintes de hausse de taux."
+      "regle": "Consommation solide mais pas trop forte, pour éviter de raviver les craintes de hausse des taux.",
+      "impact": "moyen_fort"
     },
     {
-      "id": "us_claims",
+      "id": "us_chomage_hebdo",
       "pays": "US",
-      "nom": "Inscriptions chômage",
+      "nom": "Chômage hebdomadaire",
       "heure_paris": "2026-10-15T14:30",
-      "prevision": "197 000",
-      "regle": "Favorable si le chiffre est proche des attentes ou légèrement inférieur, car cela indique un emploi solide sans surchauffe."
+      "prevision": "",
+      "regle": "Inscriptions stables ou en légère baisse : emploi solide sans surchauffe.",
+      "impact": "moyen"
     },
     {
-      "id": "uk_bailey",
+      "id": "uk_boe_bailey",
       "pays": "UK",
-      "nom": "Discours Bailey BoE",
+      "nom": "Discours BoE Bailey",
       "heure_paris": "2026-10-16T04:00",
       "prevision": "",
-      "regle": "Favorable si le ton est mesuré, sans signal de nouvelles hausses de taux."
+      "regle": "Ton mesuré sur les taux : moins de risque de resserrement de la BoE.",
+      "impact": "moyen"
     },
     {
-      "id": "us_warsh",
+      "id": "us_fed_warsh",
       "pays": "US",
-      "nom": "Discours Warsh Fed",
-      "heure_paris": "2026-10-16T05:30",
+      "nom": "Discours Fed Warsh",
+      "heure_paris": "2026-10-16T06:30",
       "prevision": "",
-      "regle": "Favorable si le président de la Fed écarte une nouvelle hausse de taux en octobre."
+      "regle": "Ton patient, sans signal de hausse de taux en octobre : favorable aux actions et au bitcoin.",
+      "impact": "fort"
     }
   ]
 }
