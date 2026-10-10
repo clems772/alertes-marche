@@ -4,26 +4,26 @@
     {
       "id": "jp_ppi",
       "pays": "JP",
-      "nom": "Prix production",
+      "nom": "Prix production PPI",
       "heure_paris": "2026-10-13T01:50",
-      "prevision": "",
-      "regle": "Favorable si la hausse des prix à la production est inférieure aux attentes, ce qui réduit la pression sur la BoJ pour relever ses taux."
+      "prevision": "8,0 % sur un an",
+      "regle": "Favorable si le chiffre est inférieur aux attentes, car cela réduit la pression pour que la BoJ relève ses taux."
     },
     {
       "id": "us_cpi",
       "pays": "US",
       "nom": "Inflation CPI",
       "heure_paris": "2026-10-14T14:30",
-      "prevision": "0,6 % sur un mois",
-      "regle": "Favorable si l'inflation, surtout sous-jacente, est inférieure aux attentes, ce qui réduit le risque d'une nouvelle hausse de taux de la Fed."
+      "prevision": "3,7 % sur un an",
+      "regle": "Favorable si le CPI, surtout l'indice sous-jacent, est inférieur aux attentes, car cela réduit le risque d'une hausse de taux de la Fed."
     },
     {
-      "id": "uk_pib",
+      "id": "uk_gdp",
       "pays": "UK",
       "nom": "PIB mensuel",
       "heure_paris": "2026-10-15T08:00",
-      "prevision": "-0,1 % à -0,4 % sur un mois",
-      "regle": "Favorable si le PIB est meilleur que prévu, car cela confirme la solidité de l'économie britannique."
+      "prevision": "-0,1 % sur un mois",
+      "regle": "Favorable si le PIB est supérieur aux attentes, car cela montre que la croissance résiste."
     },
     {
       "id": "us_ppi",
@@ -31,15 +31,39 @@
       "nom": "Prix production PPI",
       "heure_paris": "2026-10-15T14:30",
       "prevision": "0,5 % sur un mois",
-      "regle": "Favorable si les prix à la production sont inférieurs aux attentes, car cela annonce une inflation plus faible."
+      "regle": "Favorable si le PPI est inférieur aux attentes, car cela réduit la pression sur l'inflation et sur la Fed."
     },
     {
-      "id": "us_ventes_detail",
+      "id": "us_retail",
       "pays": "US",
       "nom": "Ventes au détail",
       "heure_paris": "2026-10-15T14:30",
       "prevision": "0,3 % sur un mois",
-      "regle": "Favorable si la hausse est modérée et proche des attentes, ce qui montre une consommation solide sans relancer la crainte d'une hausse des taux."
+      "regle": "Favorable si les ventes sont proches ou un peu supérieures aux attentes. Un chiffre très élevé peut relancer les craintes de hausse de taux."
+    },
+    {
+      "id": "us_claims",
+      "pays": "US",
+      "nom": "Inscriptions chômage",
+      "heure_paris": "2026-10-15T14:30",
+      "prevision": "197 000",
+      "regle": "Favorable si le chiffre est proche des attentes ou légèrement inférieur, car cela indique un emploi solide sans surchauffe."
+    },
+    {
+      "id": "uk_bailey",
+      "pays": "UK",
+      "nom": "Discours Bailey BoE",
+      "heure_paris": "2026-10-16T04:00",
+      "prevision": "",
+      "regle": "Favorable si le ton est mesuré, sans signal de nouvelles hausses de taux."
+    },
+    {
+      "id": "us_warsh",
+      "pays": "US",
+      "nom": "Discours Warsh Fed",
+      "heure_paris": "2026-10-16T05:30",
+      "prevision": "",
+      "regle": "Favorable si le président de la Fed écarte une nouvelle hausse de taux en octobre."
     }
   ]
 }
