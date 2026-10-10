@@ -1,0 +1,55 @@
+name: Alertes marché
+on:
+  schedule:
+    - cron: "*/10 23 * * 0-4"
+    - cron: "*/10 0 * * 1-5"
+    - cron: "*/10 6,7 * * 1-5"
+    - cron: "*/10 12-19 * * 1-5"
+    - cron: "0 17 * * 0"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "test, semaine ou normal"
+        type: choice
+        options: [test, semaine, normal]
+        default: test
+
+permissions:
+  contents: write
+
+concurrency:
+  group: alertes-marche
+  cancel-in-progress: false
+
+jobs:
+  alertes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests
+
+      - name: Vérifier les annonces
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          MODE: ${{ github.event.inputs.mode || 'normal' }}
+        run: |
+          case "$MODE" in
+            test)    python alertes_marche.py --test ;;
+            semaine) python alertes_marche.py --semaine ;;
+            *)       python alertes_marche.py ;;
+          esac
+
+      - name: Sauvegarder
+        if: always()
+        run: |
+          git config user.name "alertes-bot"
+          git config user.email "alertes-bot@users.noreply.github.com"
+          for f in semaine.json etat.json; do [ -f "$f" ] && git add "$f"; done
+          git diff --cached --quiet || (git commit -m "Mise à jour des alertes" && git pull --rebase && git push)
