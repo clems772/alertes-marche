@@ -1,95 +1,86 @@
 {
-  "lundi": "2026-10-12",
+  "lundi": "2026-10-19",
   "annonces": [
-    {
-      "id": "jp_ppi",
-      "pays": "JP",
-      "nom": "Prix production Japon",
-      "heure_paris": "2026-10-13T01:50",
-      "prevision": "",
-      "regle": "Hausse plus faible que prévu : moins de pression sur la BoJ pour relever ses taux, ce qui est favorable aux actions.",
-      "impact": "faible"
-    },
     {
       "id": "uk_emploi",
       "pays": "UK",
       "nom": "Emploi Royaume-Uni",
-      "heure_paris": "2026-10-13T08:00",
-      "prevision": "",
-      "regle": "Marché du travail et salaires modérés : cela réduit la pression sur la BoE sans signaler de récession. Favorable aux actions.",
+      "heure_paris": "2026-10-20T08:00",
+      "prevision": "Chômage à 5,0 %",
+      "regle": "Chômage stable ou en baisse et salaires qui ralentissent, ce qui détend la BoE",
       "impact": "moyen"
     },
     {
-      "id": "us_cpi",
-      "pays": "US",
+      "id": "uk_cpi",
+      "pays": "UK",
       "nom": "Inflation CPI",
-      "heure_paris": "2026-10-14T14:30",
-      "prevision": "0,6 % sur un mois",
-      "regle": "Chiffre égal ou inférieur aux prévisions, surtout l'inflation sous-jacente (0,2 % attendu) : cela éloigne une hausse des taux de la Fed.",
-      "impact": "fort"
+      "heure_paris": "2026-10-21T08:00",
+      "prevision": "3,4 % sur un an",
+      "regle": "Inflation inférieure ou égale aux attentes, ce qui réduit le risque de hausse de la BoE",
+      "impact": "moyen"
     },
     {
-      "id": "jp_boj_koeda",
-      "pays": "JP",
-      "nom": "Discours BoJ Koeda",
-      "heure_paris": "2026-10-15T03:30",
+      "id": "uk_ppi",
+      "pays": "UK",
+      "nom": "Prix production",
+      "heure_paris": "2026-10-21T08:00",
       "prevision": "",
-      "regle": "Ton prudent sur de nouvelles hausses de taux : rassurant pour les marchés.",
+      "regle": "Hausse inférieure aux attentes, ce qui réduit la pression sur les prix",
       "impact": "faible"
     },
     {
-      "id": "uk_pib",
+      "id": "us_claims",
+      "pays": "US",
+      "nom": "Chômage hebdo",
+      "heure_paris": "2026-10-22T14:30",
+      "prevision": "200 000",
+      "regle": "Chiffre proche ou légèrement inférieur aux attentes, signe d'un emploi solide sans surchauffe",
+      "impact": "moyen"
+    },
+    {
+      "id": "jp_cpi",
+      "pays": "JP",
+      "nom": "Inflation CPI",
+      "heure_paris": "2026-10-23T01:30",
+      "prevision": "2,3 % sur un an",
+      "regle": "Inflation proche des attentes, sans surprise haussière qui accélérerait les hausses de taux de la BoJ",
+      "impact": "moyen"
+    },
+    {
+      "id": "jp_pmi",
+      "pays": "JP",
+      "nom": "PMI flash Japon",
+      "heure_paris": "2026-10-23T02:30",
+      "prevision": "",
+      "regle": "Indice au-dessus de 50 et stable, avec des prix qui se calment",
+      "impact": "faible"
+    },
+    {
+      "id": "uk_retail",
       "pays": "UK",
-      "nom": "PIB Royaume-Uni",
-      "heure_paris": "2026-10-15T08:00",
-      "prevision": "-0,3 % sur un mois",
-      "regle": "Croissance meilleure que prévu, sans nourrir la crainte d'un resserrement plus dur de la BoE.",
-      "impact": "moyen"
+      "nom": "Ventes détail",
+      "heure_paris": "2026-10-23T08:00",
+      "prevision": "-0,2 % sur un mois",
+      "regle": "Chiffre supérieur aux attentes, signe d'une consommation résistante",
+      "impact": "faible"
     },
     {
-      "id": "us_ppi",
-      "pays": "US",
-      "nom": "Prix production PPI",
-      "heure_paris": "2026-10-15T14:30",
-      "prevision": "0,5 % sur un mois",
-      "regle": "Hausse inférieure aux prévisions : moins de pression sur l'inflation, favorable aux actions.",
-      "impact": "moyen_fort"
-    },
-    {
-      "id": "us_ventes_detail",
-      "pays": "US",
-      "nom": "Ventes au détail",
-      "heure_paris": "2026-10-15T14:30",
-      "prevision": "0,3 % sur un mois",
-      "regle": "Consommation solide mais pas trop forte, pour éviter de raviver les craintes de hausse des taux.",
-      "impact": "moyen_fort"
-    },
-    {
-      "id": "us_chomage_hebdo",
-      "pays": "US",
-      "nom": "Chômage hebdomadaire",
-      "heure_paris": "2026-10-15T14:30",
-      "prevision": "",
-      "regle": "Inscriptions stables ou en légère baisse : emploi solide sans surchauffe.",
-      "impact": "moyen"
-    },
-    {
-      "id": "uk_boe_bailey",
+      "id": "uk_pmi",
       "pays": "UK",
-      "nom": "Discours BoE Bailey",
-      "heure_paris": "2026-10-16T04:00",
-      "prevision": "",
-      "regle": "Ton mesuré sur les taux : moins de risque de resserrement de la BoE.",
-      "impact": "moyen"
+      "nom": "PMI flash UK",
+      "heure_paris": "2026-10-23T10:30",
+      "prevision": "51,7 (composite)",
+      "regle": "Indice supérieur aux attentes, avec des prix qui ne s'emballent pas",
+      "impact": "faible"
     },
     {
-      "id": "us_fed_warsh",
+      "id": "us_pmi",
       "pays": "US",
-      "nom": "Discours Fed Warsh",
-      "heure_paris": "2026-10-16T06:30",
-      "prevision": "",
-      "regle": "Ton patient, sans signal de hausse de taux en octobre : favorable aux actions et au bitcoin.",
-      "impact": "fort"
+      "nom": "PMI flash US",
+      "heure_paris": "2026-10-23T15:45",
+      "prevision": "57,9 (services)",
+      "regle": "Activité solide au-dessus de 50, avec des prix qui n'accélèrent pas",
+      "impact": "moyen_fort"
     }
   ]
 }
