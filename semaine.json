@@ -1,86 +1,113 @@
 {
-  "lundi": "2026-10-19",
+  "lundi": "2026-10-26",
   "annonces": [
     {
-      "id": "uk_emploi",
+      "id": "uk_budget",
       "pays": "UK",
-      "nom": "Emploi Royaume-Uni",
-      "heure_paris": "2026-10-20T08:00",
-      "prevision": "Chômage à 5,0 %",
-      "regle": "Chômage stable ou en baisse et salaires qui ralentissent, ce qui détend la BoE",
-      "impact": "moyen"
-    },
-    {
-      "id": "uk_cpi",
-      "pays": "UK",
-      "nom": "Inflation CPI",
-      "heure_paris": "2026-10-21T08:00",
-      "prevision": "3,4 % sur un an",
-      "regle": "Inflation inférieure ou égale aux attentes, ce qui réduit le risque de hausse de la BoE",
-      "impact": "moyen"
-    },
-    {
-      "id": "uk_ppi",
-      "pays": "UK",
-      "nom": "Prix production",
-      "heure_paris": "2026-10-21T08:00",
+      "nom": "Budget britannique",
+      "heure_paris": "2026-10-28T13:30",
       "prevision": "",
-      "regle": "Hausse inférieure aux attentes, ce qui réduit la pression sur les prix",
-      "impact": "faible"
+      "regle": "Discipline budgétaire crédible et peu d'émissions de dette : favorable (gilts et livre stables). Mesures jugées laxistes : tensions obligataires, défavorable.",
+      "impact": "moyen"
     },
     {
-      "id": "us_claims",
+      "id": "us_fed_decision",
+      "pays": "US",
+      "nom": "Décision Fed",
+      "heure_paris": "2026-10-28T19:00",
+      "prevision": "Maintien à 3,75-4,00 %",
+      "regle": "Maintien du taux sans biais haussier marqué : favorable aux actions et au bitcoin. Hausse surprise ou vote très divisé en faveur d'une hausse : défavorable.",
+      "impact": "fort"
+    },
+    {
+      "id": "us_fed_warsh",
+      "pays": "US",
+      "nom": "Conférence Warsh",
+      "heure_paris": "2026-10-28T19:30",
+      "prevision": "",
+      "regle": "Ton mesuré, pas d'engagement de hausse en décembre : favorable. Discours très ferme sur l'inflation : défavorable.",
+      "impact": "fort"
+    },
+    {
+      "id": "us_pib_t3",
+      "pays": "US",
+      "nom": "PIB US T3",
+      "heure_paris": "2026-10-29T13:30",
+      "prevision": "3,0 % annualisé",
+      "regle": "Croissance solide sans surchauffe : favorable. Chiffre très supérieur aux attentes avec des prix élevés : craintes de taux restrictifs plus longtemps.",
+      "impact": "moyen_fort"
+    },
+    {
+      "id": "us_pce",
+      "pays": "US",
+      "nom": "Inflation PCE",
+      "heure_paris": "2026-10-29T13:30",
+      "prevision": "0,5 % sur un mois",
+      "regle": "Chiffre inférieur ou égal aux attentes (sous-jacent 0,3 % ou moins) : favorable. Chiffre supérieur : renforce l'hypothèse d'une hausse de la Fed en décembre, défavorable.",
+      "impact": "fort"
+    },
+    {
+      "id": "us_chomage_hebdo",
       "pays": "US",
       "nom": "Chômage hebdo",
-      "heure_paris": "2026-10-22T14:30",
-      "prevision": "200 000",
-      "regle": "Chiffre proche ou légèrement inférieur aux attentes, signe d'un emploi solide sans surchauffe",
-      "impact": "moyen"
-    },
-    {
-      "id": "jp_cpi",
-      "pays": "JP",
-      "nom": "Inflation CPI",
-      "heure_paris": "2026-10-23T01:30",
-      "prevision": "2,3 % sur un an",
-      "regle": "Inflation proche des attentes, sans surprise haussière qui accélérerait les hausses de taux de la BoJ",
-      "impact": "moyen"
-    },
-    {
-      "id": "jp_pmi",
-      "pays": "JP",
-      "nom": "PMI flash Japon",
-      "heure_paris": "2026-10-23T02:30",
+      "heure_paris": "2026-10-29T13:30",
       "prevision": "",
-      "regle": "Indice au-dessus de 50 et stable, avec des prix qui se calment",
+      "regle": "Demandes stables ou en légère hausse : favorable (marché du travail sans surchauffe). Très faibles : pression sur la Fed. Forte hausse : craintes de récession.",
+      "impact": "moyen"
+    },
+    {
+      "id": "jp_tokyo_cpi",
+      "pays": "JP",
+      "nom": "Inflation Tokyo",
+      "heure_paris": "2026-10-30T00:30",
+      "prevision": "",
+      "regle": "Plutôt favorable si l'inflation ralentit (moins de pression sur la BoJ, yen stable) ; une hausse forte renforce l'hypothèse d'un relèvement des taux en décembre et peut faire baisser les actions.",
       "impact": "faible"
     },
     {
-      "id": "uk_retail",
-      "pays": "UK",
+      "id": "jp_chomage",
+      "pays": "JP",
+      "nom": "Chômage Japon",
+      "heure_paris": "2026-10-30T00:30",
+      "prevision": "",
+      "regle": "Taux stable ou bas : marché du travail solide, favorable. Une hausse nette pèse sur la consommation.",
+      "impact": "faible"
+    },
+    {
+      "id": "jp_ventes_detail",
+      "pays": "JP",
       "nom": "Ventes détail",
-      "heure_paris": "2026-10-23T08:00",
-      "prevision": "-0,2 % sur un mois",
-      "regle": "Chiffre supérieur aux attentes, signe d'une consommation résistante",
+      "heure_paris": "2026-10-30T00:50",
+      "prevision": "",
+      "regle": "Chiffre solide et en ligne avec les attentes : favorable à la demande intérieure. Un chiffre trop fort alimente les paris sur un relèvement des taux.",
       "impact": "faible"
     },
     {
-      "id": "uk_pmi",
-      "pays": "UK",
-      "nom": "PMI flash UK",
-      "heure_paris": "2026-10-23T10:30",
-      "prevision": "51,7 (composite)",
-      "regle": "Indice supérieur aux attentes, avec des prix qui ne s'emballent pas",
-      "impact": "faible"
-    },
-    {
-      "id": "us_pmi",
-      "pays": "US",
-      "nom": "PMI flash US",
-      "heure_paris": "2026-10-23T15:45",
-      "prevision": "57,9 (services)",
-      "regle": "Activité solide au-dessus de 50, avec des prix qui n'accélèrent pas",
+      "id": "jp_boj_decision",
+      "pays": "JP",
+      "nom": "Décision BoJ",
+      "heure_paris": "2026-10-30T04:00",
+      "prevision": "Statu quo attendu",
+      "regle": "Maintien du taux et ton prudent : favorable aux actions et au bitcoin. Hausse surprise ou ton dur : yen plus fort, débouclage du carry trade, risque de baisse.",
       "impact": "moyen_fort"
+    },
+    {
+      "id": "jp_boj_ueda",
+      "pays": "JP",
+      "nom": "Conférence Ueda",
+      "heure_paris": "2026-10-30T07:30",
+      "prevision": "",
+      "regle": "Ton prudent sur la suite des hausses de taux : favorable. Signal clair de hausse en décembre : défavorable.",
+      "impact": "moyen"
+    },
+    {
+      "id": "us_eci",
+      "pays": "US",
+      "nom": "Coût du travail",
+      "heure_paris": "2026-10-30T13:30",
+      "prevision": "",
+      "regle": "Hausse modérée des salaires : favorable. Accélération nette : risque inflationniste et Fed plus ferme, défavorable.",
+      "impact": "moyen"
     }
   ]
 }
