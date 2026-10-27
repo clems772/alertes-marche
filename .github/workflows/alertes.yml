@@ -1,4 +1,5 @@
 name: Alertes marché
+
 on:
   schedule:
     - cron: "*/10 23 * * 0-4"
@@ -9,9 +10,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "test, semaine ou normal"
+        description: "test, semaine, fear ou normal"
         type: choice
-        options: [test, semaine, normal]
+        options: [test, semaine, fear, normal]
         default: test
 
 permissions:
@@ -24,7 +25,7 @@ concurrency:
 jobs:
   alertes:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
@@ -43,6 +44,7 @@ jobs:
           case "$MODE" in
             test)    python alertes_marche.py --test ;;
             semaine) python alertes_marche.py --semaine ;;
+            fear)    python alertes_marche.py --fear ;;
             *)       python alertes_marche.py ;;
           esac
 
