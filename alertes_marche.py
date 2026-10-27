@@ -73,7 +73,7 @@ def notifier(titre, message, verdict=None):
     if NTFY_TOPIC:
         requests.post("https://ntfy.sh/", timeout=30, json={
             "topic": NTFY_TOPIC, "title": titre, "message": message,
-            "tags": [TAG[verdict]] if verdict in TAG else [], "priority": 4})
+            "priority": 5 if verdict else 4})
 
 
 def lundi_cible():
@@ -96,6 +96,8 @@ def charger_semaine(forcer=False):
         + " au " + vendredi.strftime("%d/%m/%Y") + ". "
         "Garde UNIQUEMENT les annonces a fort impact pour les Etats-Unis, le Royaume-Uni et le Japon "
         "(inflation, emploi, PIB, ventes au detail, banques centrales, PMI majeurs). Maximum 15. Une seule ligne par publication : regroupe les variantes d'un meme chiffre (mensuel, annuel, sous-jacent). Inclus OBLIGATOIREMENT les annonces importantes du Royaume-Uni et du Japon de la semaine (PIB, inflation, emploi, BoE, BoJ, prix a la production) meme si elles sont moins suivies que les americaines. "
+        "Verifie chaque date sur le calendrier officiel (BLS, BEA, Census, Fed, ONS, BoE, BoJ) et n'inclus une annonce "
+        "que si sa date de publication est confirmee pour cette semaine. "
         "Heures converties en heure de Paris. Reponds UNIQUEMENT par un tableau JSON : "
         '[{"id":"court_unique","pays":"US|UK|JP","nom":"nom tres court en francais, 3 mots maximum, ex: Inflation CPI",'
         '"heure_paris":"AAAA-MM-JJTHH:MM","prevision":"chiffre principal seulement, tres court, ex: 0,6 % sur un mois, ou vide",'
@@ -153,12 +155,128 @@ def alerter(a, rep):
     notifier(titre, rep.get("explication", ""), v)
 
 
+NOTE_FG = {"extreme fear": "😱 Extreme Fear (peur extrême)", "fear": "😨 Fear (peur)",
+           "neutral": "😐 Neutral (neutre)", "greed": "😀 Greed (avidité)",
+           "extreme greed": "🤑 Extreme Greed (avidité extrême)"}
+
+
+def lire_fear_greed():
+    try:
+        r = requests.get("https://production.dataviz.cnn.io/index/fearandgreed/graphdata", timeout=30,
+                         headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                                  "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
+                                  "Accept": "application/json", "Referer": "https://edition.cnn.com/"})
+        d = r.json()["fear_and_greed"]
+        return {"score": d["score"], "note": d["rating"], "veille": d.get("previous_close"),
+                "semaine": d.get("previous_1_week"), "mois": d.get("previous_1_month")}
+    except Exception as e:
+        print("CNN indisponible, je passe par la recherche :", e)
+    rep = demander_a_claude(
+        "Cherche la valeur actuelle de l'indice CNN Fear and Greed (actions americaines). "
+        'Reponds UNIQUEMENT en JSON : {"score": nombre, "note": "extreme fear|fear|neutral|greed|extreme greed", '
+        '"veille": nombre ou null, "semaine": nombre ou null, "mois": nombre ou null}', recherches=3)
+    return rep
+
+
+def lire_crypto_fear_greed():
+    data = requests.get("https://api.alternative.me/fng/?limit=31", timeout=30).json()["data"]
+
+    def val(i):
+        return int(data[i]["value"]) if len(data) > i else None
+
+    return {"score": val(0), "note": data[0]["value_classification"],
+            "veille": val(1), "semaine": val(7), "mois": val(30)}
+
+
+def bloc_fg(icone, nom, d):
+    score = round(float(d["score"]))
+    note = NOTE_FG.get(str(d.get("note", "")).lower(), str(d.get("note", "")))
+    histo = []
+    for cle, libelle in (("veille", "Veille"), ("semaine", "1 sem."), ("mois", "1 mois")):
+        if d.get(cle) is not None:
+            histo.append(libelle + " " + str(round(float(d[cle]))))
+    texte = icone + " " + nom + " : " + str(score) + " · " + note
+    if histo:
+        texte = texte + "\n" + " · ".join(histo)
+    return score, texte
+
+
+def envoyer_fear_greed(etat, forcer=False):
+    n = maintenant()
+    auj = n.date().isoformat()
+    if not forcer and (etat.get("fg_jour") == auj or n.hour < 8 or n.weekday() >= 5):
+        return
+    titres = []
+    blocs = []
+    try:
+        score, texte = bloc_fg("📈", "Actions", lire_fear_greed())
+        titres.append("Actions " + str(score))
+        blocs.append(texte)
+    except Exception as e:
+        print("Fear & Greed actions introuvable :", e)
+    try:
+        score, texte = bloc_fg("₿", "Crypto", lire_crypto_fear_greed())
+        titres.append("Crypto " + str(score))
+        blocs.append(texte)
+    except Exception as e:
+        print("Fear & Greed crypto introuvable :", e)
+    if not blocs:
+        return
+    notifier("Fear & Greed · " + " · ".join(titres), "\n\n".join(blocs))
+    etat["fg_jour"] = auj
+
+
+def heure_de(a):
+    return dt.datetime.fromisoformat(a["heure_paris"]).replace(tzinfo=PARIS)
+
+
+def mode_direct(annonces, envoyes, essais):
+    # Pour les annonces importantes : on attend l'heure exacte sur place,
+    # puis on verifie toutes les minutes jusqu'a trouver le chiffre.
+    groupe = []
+    for a in annonces:
+        cle = a["id"] + "@" + a["heure_paris"]
+        ecoule = (maintenant() - heure_de(a)).total_seconds() / 60
+        if a.get("impact") in ("fort", "moyen_fort") and cle not in envoyes and -25 <= ecoule <= 30:
+            groupe.append(a)
+    if not groupe:
+        return
+    premiere = min(heure_de(a) for a in groupe)
+    attente = (premiere - maintenant()).total_seconds() + 45
+    if attente > 0:
+        print("Mode direct : j'attends", int(attente), "secondes")
+        time.sleep(attente)
+    fin = max(heure_de(a) for a in groupe) + dt.timedelta(minutes=35)
+    while groupe and maintenant() < fin:
+        for a in list(groupe):
+            if maintenant() < heure_de(a) + dt.timedelta(seconds=45):
+                continue
+            cle = a["id"] + "@" + a["heure_paris"]
+            essais[cle] = time.time()
+            try:
+                a2 = dict(a)
+                a2["heure"] = heure_de(a).strftime("%H:%M")
+                rep = verifier(a2)
+            except Exception as e:
+                print("Erreur sur", a["nom"], ":", e)
+                rep = None
+            if rep:
+                alerter(a, rep)
+                envoyes.add(cle)
+                groupe.remove(a)
+        if groupe:
+            time.sleep(60)
+
+
 def une_fois():
     etat = lire(FICHIER_ETAT, {})
     envoyes = set(etat.get("envoyes", []))
     essais = etat.get("essais", {})
     try:
-        for a in charger_semaine():
+        envoyer_fear_greed(etat)
+        annonces = charger_semaine()
+        mode_direct(annonces, envoyes, essais)
+        for a in annonces:
             cle = a["id"] + "@" + a["heure_paris"]
             if cle in envoyes:
                 continue
@@ -199,6 +317,8 @@ if __name__ == "__main__":
     mode = sys.argv[1] if len(sys.argv) > 1 else ""
     if mode == "--test":
         notifier("🟢 Test reussi", "Les alertes marche arriveront ici.", "favorable")
+    elif mode == "--fear":
+        envoyer_fear_greed({}, forcer=True)
     elif mode == "--semaine":
         for a in charger_semaine(forcer=True):
             print(a["heure_paris"], a["pays"], a["nom"], a.get("prevision"))
